@@ -6,7 +6,10 @@ rust-version = "1.88"
 description = "Hybrid vector + BM25 RAG over the official PowerShell documentation (MicrosoftDocs/PowerShell-Docs), served as an MCP server"
 license = "Apache-2.0"
 readme = "README.md"
-keywords = ["powershell", "rag", "vector", "mcp", "embeddings", "bm25"]
+repository = "https://github.com/JLFN/powershell-mcp"
+homepage = "https://github.com/JLFN/powershell-mcp"
+documentation = "https://docs.rs/powershell-mcp"
+keywords = ["powershell", "rag", "vector", "mcp", "bm25"]
 categories = ["command-line-utilities", "database", "text-processing"]
 
 [dependencies]
