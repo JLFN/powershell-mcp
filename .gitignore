@@ -1,0 +1,6 @@
+/target
+/bin
+/index
+/.rag-index
+.fastembed_cache
+/corpus

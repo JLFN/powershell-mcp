@@ -1,0 +1,28 @@
+[package]
+name = "powershell-mcp"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.88"
+description = "Hybrid vector + BM25 RAG over the official PowerShell documentation (MicrosoftDocs/PowerShell-Docs), served as an MCP server"
+license = "Apache-2.0"
+readme = "README.md"
+keywords = ["powershell", "rag", "vector", "mcp", "embeddings", "bm25"]
+categories = ["command-line-utilities", "database", "text-processing"]
+
+[dependencies]
+anyhow = "1"
+chrono = "0.4"
+fastembed = "4"
+rmcp = { version = "3.1", features = ["transport-io"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+tantivy = "0.22"
+tokio = { version = "1", features = ["full"] }
+walkdir = "2"
+
+[dev-dependencies]
+tempfile = "3"
+
+[profile.release]
+strip = true
