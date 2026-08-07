@@ -1,10 +1,9 @@
 //! Local embedding model (fastembed, ONNX, no API key).
 //!
 //! Default model is BAAI/bge-small-en-v1.5 (384 dims, English prose,
-//! cached on this machine in ~/.cache/fastembed), the same model the
-//! health-second-opinion-mcp server uses for its literature corpus. The
-//! PowerShell documentation is English technical prose, which is exactly
-//! what bge-small is tuned for; switch with the POWERSHELL_MCP_EMBED_MODEL
+//! cached on this machine in ~/.cache/fastembed). The PowerShell
+//! documentation is English technical prose, which is exactly what
+//! bge-small is tuned for; switch with the POWERSHELL_MCP_EMBED_MODEL
 //! environment variable. E5 models are trained with instruction prefixes
 //! ("query: " / "passage: "); bge is not. Sliced batching keeps peak
 //! memory bounded.
@@ -18,7 +17,7 @@ use std::sync::OnceLock;
 /// The slice is split into batch-sized chunks that fastembed runs
 /// concurrently on its rayon pool, so a 256-text slice means four 64-text
 /// ONNX runs in flight — a good wall-clock/memory trade-off on machines
-/// with ~16 GB+ RAM (the se-law recipe).
+/// with ~16 GB+ RAM.
 pub const EMBED_SLICE: usize = 256;
 
 /// Batch size passed to each fastembed call.

@@ -1,7 +1,6 @@
 Pytest suite for powershell-mcp
 
-Quality gates for the server and its shipped skill, mirroring the
-health-second-opinion-mcp pytest convention.
+Quality gates for the server and its shipped skill.
 
 Tests
 

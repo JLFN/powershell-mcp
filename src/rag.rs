@@ -1,5 +1,4 @@
-//! Hybrid vector + BM25 store for the PowerShell documentation corpus —
-//! the rag-template recipe used by se-law-mcp and health-second-opinion-mcp.
+//! Hybrid vector + BM25 store for the PowerShell documentation corpus.
 //!
 //! The index is built offline (the build-index CLI) from a checkout of the
 //! MicrosoftDocs/PowerShell-Docs repository and lives under a RAG data
@@ -27,7 +26,7 @@ pub const MAX_K: usize = 20;
 /// RAG data directory env override, used by the server and CLI query.
 pub const HOME_ENV: &str = "POWERSHELL_MCP_HOME";
 
-/// Query mode, mirroring ebook-knowledge's QueryMode.
+/// Query mode.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum QueryMode {

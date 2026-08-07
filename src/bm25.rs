@@ -1,5 +1,4 @@
-//! BM25 full-text index (tantivy) over the chunk corpus, ported from the
-//! ebook-knowledge recipe.
+//! BM25 full-text index (tantivy) over the chunk corpus.
 
 use anyhow::{Context, Result};
 use std::path::Path;

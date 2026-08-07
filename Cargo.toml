@@ -1,6 +1,6 @@
 [package]
 name = "powershell-mcp"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 rust-version = "1.88"
 description = "Hybrid vector + BM25 RAG over the official PowerShell documentation (MicrosoftDocs/PowerShell-Docs), served as an MCP server"

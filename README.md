@@ -12,11 +12,10 @@ learn.microsoft.com/powershell — covering cmdlet reference pages, about
 topics, and conceptual guides for PowerShell versions 5.1, 7.4, 7.5,
 7.6, and 7.7.
 
-The server is built from the rag-template recipe used by se-law-mcp and
-health-second-opinion-mcp: a local hybrid index that fuses BM25 full-text
-search with vector embeddings via reciprocal rank fusion. Everything runs
-on this machine — embeddings use fastembed ONNX (bge-small-en-v1.5) and
-nothing leaves it.
+The server is a local hybrid index that fuses BM25 full-text search with
+vector embeddings via reciprocal rank fusion. Everything runs on this
+machine — embeddings use fastembed ONNX (bge-small-en-v1.5) and nothing
+leaves it.
 
 What you get
 

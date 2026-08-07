@@ -1,8 +1,7 @@
 //! Install helper: copy the binary to ~/.local/bin, register the MCP
 //! server (with POWERSHELL_MCP_HOME pointing at the index directory) in
-//! ~/.opengrok/config.toml, and install the embedded skill. Mirrors the
-//! rag-template / se-law / health-second-opinion install flow, extended to
-//! bake in the index directory.
+//! ~/.opengrok/config.toml, and install the embedded skill, baking in the
+//! index directory.
 
 use anyhow::{Context, Result};
 use std::path::{Path, PathBuf};

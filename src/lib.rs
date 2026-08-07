@@ -10,8 +10,8 @@
 //! hybrid retrieval (reciprocal rank fusion) over MCP or a CLI query
 //! command.
 //!
-//! Built from the rag-template recipe used by se-law-mcp and
-//! health-second-opinion-mcp. See docs/setup.md for the full workflow.
+//! A local hybrid RAG server over a documentation corpus. See
+//! docs/setup.md for the full workflow.
 
 pub mod bm25;
 pub mod chunk;

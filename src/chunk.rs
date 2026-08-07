@@ -1,12 +1,12 @@
-//! File chunking — split project files into retrieval units with line
-//! provenance.
+//! File chunking — split documentation files into retrieval units with
+//! line provenance.
 //!
-//! Policy (the ebook-knowledge chapter-chunking recipe generalized for
-//! code): text is cut only on blank-line boundaries, so a chunk never
-//! splits a function body or a prose paragraph. Chunks target roughly
-//! TARGET_CHUNK_CHARS characters, about 400-500 tokens. A single paragraph
-//! larger than the target is split on whole-line boundaries (never
-//! mid-line), which keeps minified or generated files indexable.
+//! Policy: text is cut only on blank-line boundaries, so a chunk never
+//! splits a code block, a function body, or a prose paragraph. Chunks
+//! target roughly TARGET_CHUNK_CHARS characters, about 400-500 tokens. A
+//! single paragraph larger than the target is split on whole-line
+//! boundaries (never mid-line), which keeps minified or generated files
+//! indexable.
 
 /// Target chunk size in characters.
 pub const TARGET_CHUNK_CHARS: usize = 1800;
