@@ -171,7 +171,8 @@ def mcp() -> "McpClient":
 
 
 def _index_available() -> bool:
-    assert BINARY.exists(), f"binary not found at {BINARY}"
+    if not BINARY.exists():
+        return False
     client = McpClient(BINARY, INDEX_HOME)
     try:
         client.initialize()
