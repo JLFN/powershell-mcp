@@ -136,6 +136,11 @@ stdio; it runs only when the bge-small model is already cached, so a plain
 cargo test never triggers the download. Build an index once and the live
 test then runs fully.
 
+python3 -m pytest pytest/ runs the skill quality gates (frontmatter,
+trigger recall and precision) and live result-quality tests over the real
+binary and index (index_info, hybrid/vector/bm25 search, file_context).
+The live tests skip automatically when the index is missing.
+
 Project layout
 
 - src/scan.rs: corpus walking, markdown-only extension rule, exclusions.
@@ -149,6 +154,8 @@ Project layout
 - src/main.rs: CLI and stdio entry point.
 - tests/rag.rs: integration tests with a fake embedder.
 - tests/live_mcp.rs: end-to-end MCP round trip with the real embedder.
+- pytest/: skill frontmatter and trigger quality gates plus live MCP
+  result-quality tests (see pytest/README.md).
 - skills/powershell-mcp/SKILL.md: the companion agent skill.
 - build/: the embedded standard builder from /data/build.
 - corpus/PowerShell-Docs: the docs checkout (not committed).

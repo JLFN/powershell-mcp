@@ -10,6 +10,11 @@ description: >
   scripting concepts, or version-specific behavior, or runs
   /powershell-mcp.
 argument-hint: "[question]"
+when-to-use: powershell, powershell scripting, powershell script, powershell
+  cmdlet, powershell module, powershell documentation, powershell reference,
+  powershell version, powershell mcp, cmdlet, cmdlets, cmdlet reference,
+  splatting, ps1
+user-invocable: true
 metadata:
   short-description: "PowerShell documentation search (cmdlet reference, about topics, conceptual guides)"
 ---
