@@ -2,6 +2,8 @@
 
 [![license](https://img.shields.io/badge/license-Apache--2.0-blue?style=for-the-badge)](LICENSE)
 [![github](https://img.shields.io/badge/github-JLFN_powershell_mcp-8da0cb?style=for-the-badge&labelColor=555555&logo=github)](https://github.com/JLFN/powershell-mcp)
+[![crates.io](https://img.shields.io/crates/v/powershell-mcp?style=for-the-badge)](https://crates.io/crates/powershell-mcp)
+[![docs.rs](https://img.shields.io/docsrs/powershell-mcp?style=for-the-badge)](https://docs.rs/powershell-mcp)
 
 powershell-mcp is an MCP server that answers questions about PowerShell
 from the official documentation. The corpus is the MicrosoftDocs/
