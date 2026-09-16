@@ -5,7 +5,7 @@ use std::path::Path;
 use tantivy::collector::TopDocs;
 use tantivy::query::QueryParser;
 use tantivy::schema::{
-    Field, IndexRecordOption, OwnedValue, Schema, TextFieldIndexing, INDEXED, STORED, TEXT,
+    Field, IndexRecordOption, Schema, TextFieldIndexing, Value, INDEXED, STORED, TEXT,
 };
 use tantivy::tokenizer::{
     Language, LowerCaser, RemoveLongFilter, SimpleTokenizer, Stemmer, TextAnalyzer,
@@ -87,15 +87,15 @@ pub fn search_chunks(tantivy_dir: &Path, question: &str, limit: usize) -> Result
     let parser = QueryParser::for_index(&index, vec![body]);
     let query = parser.parse_query(question).context("parse query")?;
     let top = searcher
-        .search(&query, &TopDocs::with_limit(limit))
+        .search(&query, &TopDocs::with_limit(limit).order_by_score())
         .context("tantivy search")?;
 
     let mut hits = Vec::with_capacity(top.len());
     for (score, addr) in top {
         let doc: TantivyDocument = searcher.doc(addr).context("fetch tantivy doc")?;
-        if let Some(OwnedValue::I64(idx)) = doc.get_first(chunk_index) {
+        if let Some(idx) = doc.get_first(chunk_index).and_then(|v| v.as_i64()) {
             hits.push(Bm25Hit {
-                chunk_index: *idx as usize,
+                chunk_index: idx as usize,
                 score,
             });
         }

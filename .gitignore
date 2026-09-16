@@ -4,5 +4,8 @@
 /.rag-index
 .fastembed_cache
 /corpus
+graphify-rs-out/
+graphify-out/
+.callgraph-index.bin
 __pycache__/
 .pytest_cache/
