@@ -7,5 +7,8 @@
 graphify-rs-out/
 graphify-out/
 .callgraph-index.bin
+# Hook-managed handoff (machine-local per global rule 9; the hooks refresh
+# its frontmatter). docs/handoff.md is a one-line redirect to it.
+/powershell-mcp-handoff.md
 __pycache__/
 .pytest_cache/
