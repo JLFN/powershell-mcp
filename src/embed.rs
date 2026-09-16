@@ -9,9 +9,9 @@
 //! memory bounded.
 
 use anyhow::{bail, Context, Result};
-use fastembed::{EmbeddingModel, InitOptions, TextEmbedding};
+use fastembed::{EmbeddingModel, TextEmbedding, TextInitOptions};
 use std::path::PathBuf;
-use std::sync::OnceLock;
+use std::sync::{Mutex, OnceLock};
 
 /// Number of texts handed to the model per call, bounding peak memory.
 /// The slice is split into batch-sized chunks that fastembed runs
@@ -88,7 +88,7 @@ pub fn current_model() -> Model {
     Model::from_env()
 }
 
-static EMBEDDER: OnceLock<TextEmbedding> = OnceLock::new();
+static EMBEDDER: OnceLock<Mutex<TextEmbedding>> = OnceLock::new();
 
 /// Embed texts into fixed-size vectors with bounded peak memory. The input
 /// is split into small sequential slices so the model never sees the whole
@@ -98,6 +98,8 @@ pub fn embed_texts(texts: &[String]) -> Result<Vec<Vec<f32>>> {
     let mut out = Vec::with_capacity(texts.len());
     for slice in texts.chunks(EMBED_SLICE) {
         let vectors = emb
+            .lock()
+            .map_err(|_| anyhow::anyhow!("embedder mutex poisoned"))?
             .embed(slice.to_vec(), Some(EMBED_BATCH))
             .context("embed texts")?;
         if vectors.len() != slice.len() {
@@ -142,18 +144,18 @@ pub fn active_model_cached() -> bool {
     })
 }
 
-fn embedder() -> Result<&'static TextEmbedding> {
+fn embedder() -> Result<&'static Mutex<TextEmbedding>> {
     if let Some(e) = EMBEDDER.get() {
         return Ok(e);
     }
-    let mut init = InitOptions::default();
+    let mut init = TextInitOptions::default();
     init.model_name = current_model().fastembed();
     init.show_download_progress = true;
     init.cache_dir = model_cache_dir().unwrap_or_else(|| PathBuf::from(".fastembed_cache"));
     let emb = TextEmbedding::try_new(init)
         .context("init embedding model (first run downloads the model binary)")?;
     // Race-safe: if another thread won, keep its instance.
-    let _ = EMBEDDER.set(emb);
+    let _ = EMBEDDER.set(Mutex::new(emb));
     Ok(EMBEDDER.get().expect("embedder set"))
 }
 
