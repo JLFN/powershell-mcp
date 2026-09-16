@@ -48,3 +48,24 @@ fusion.
 - search returns ranked chunks, not answers — synthesize from the text.
 - If a term returns nothing, try bm25 mode (exact keyword) before
   concluding the docs lack the information.
+
+## Memory and handoff
+
+- The complete project handoff + executable plan is at
+  /data/powershell-mcp/powershell-mcp-handoff.md (the hook-managed
+  handoff per global rule 9 — read it first for this project's state,
+  open items, and acceptance criteria; the handoff-hooks binary refreshes
+  its frontmatter and injects the progress/staleness readout). The
+  docs/handoff.md file in this repo is a one-line redirect to it.
+- The project memory entry lives in
+  ~/.opengrok/memory/powershell-mcp-aec8143f/MEMORY.md. If anything is
+  unclear, run memory_search for "powershell-mcp" or read that file
+  before guessing.
+- Branches: dev is the integration branch (the local working line) and
+  main is production. Work branches fork dev and merge back via a PR;
+  dev reaches main only via a PR. Run `bash tests/run.sh` before any
+  commit for delivery or push — it runs the cargo suite, the pytest
+  gates, and the rule-19 AI QA-tester gate (tests/qa-gate.sh).
+- Launch sessions with `open-grok --cwd /data/powershell-mcp`: the hooks
+  fail open outside a git workspace, so a session started from /data
+  produces no hook-managed handoff.
